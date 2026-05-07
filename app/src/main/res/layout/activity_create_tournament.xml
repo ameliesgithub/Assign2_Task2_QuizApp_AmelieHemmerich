@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.CreateTournamentActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#9B1446"
+            android:padding="24px">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Tournament"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <EditText
+                android:id="@+id/edtTourNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tournament Name"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/edtCategoryInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Category ID (e.g. 9)"
+                android:inputType="number"
+                android:layout_marginBottom="16dp"/>
+
+            <Spinner
+                android:id="@+id/spDifficultyInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/edtStartDateInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Start Date"
+                android:focusable="false"
+                android:clickable="true"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/edtEndDateInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="End Date"
+                android:focusable="false"
+                android:clickable="true"
+                android:layout_marginBottom="16dp"/>
+
+            <Button
+                android:id="@+id/btnCreateTour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create"
+                android:backgroundTint="#9B1446"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</ScrollView>
