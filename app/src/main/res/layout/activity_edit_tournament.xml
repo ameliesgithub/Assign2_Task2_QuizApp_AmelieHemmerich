@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.CreateTournamentActivity">
+    tools:context=".admin.EditTournamentActivity"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create Tournament"
+                android:text="Edit Tournament"
                 android:textStyle="bold"
                 android:textSize="24dp"
                 android:textColor="#FFFFFF"
@@ -39,28 +40,14 @@
             android:padding="20dp">
 
             <EditText
-                android:id="@+id/edtTourNameInput"
+                android:id="@+id/edtTourNameEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tournament Name"
                 android:layout_marginBottom="16dp"/>
 
             <EditText
-                android:id="@+id/edtCategoryInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Category ID (e.g. 9)"
-                android:inputType="number"
-                android:layout_marginBottom="16dp"/>
-
-            <Spinner
-                android:id="@+id/spDifficultyInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"/>
-
-            <EditText
-                android:id="@+id/edtStartDateInput"
+                android:id="@+id/edtStartDateEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Start Date"
@@ -69,7 +56,7 @@
                 android:layout_marginBottom="16dp"/>
 
             <EditText
-                android:id="@+id/edtEndDateInput"
+                android:id="@+id/edtEndDateEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="End Date"
@@ -78,14 +65,13 @@
                 android:layout_marginBottom="16dp"/>
 
             <Button
-                android:id="@+id/btnCreateTour"
+                android:id="@+id/btnUpdateTour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create"
+                android:text="Save Changes"
                 android:backgroundTint="#9B1446"/>
 
         </LinearLayout>
     </LinearLayout>
-
 
 </ScrollView>

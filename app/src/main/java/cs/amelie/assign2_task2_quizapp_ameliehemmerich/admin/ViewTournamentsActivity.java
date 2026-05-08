@@ -35,6 +35,11 @@ public class ViewTournamentsActivity extends AppCompatActivity {
         rvTournaments = findViewById(R.id.rvViewAllTournaments);
         db = AppDatabase.getInstance(this);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadTournaments();
     }
 

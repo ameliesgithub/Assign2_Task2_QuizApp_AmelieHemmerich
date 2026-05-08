@@ -12,7 +12,7 @@ import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.User;
 
 @Database(
         entities = {User.class, Tournament.class, Question.class},
-        version = 3
+        version = 4
 )
 public abstract class AppDatabase extends RoomDatabase {
 

@@ -1,5 +1,7 @@
 package cs.amelie.assign2_task2_quizapp_ameliehemmerich.adapter;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.R;
+import cs.amelie.assign2_task2_quizapp_ameliehemmerich.admin.EditTournamentActivity;
+import cs.amelie.assign2_task2_quizapp_ameliehemmerich.database.AppDatabase;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Tournament;
 
 public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.TournamentViewHolder> {
 
     private List<Tournament> tournaments;
+
+    private AppDatabase db;
 
 
     public TournamentAdapter(List<Tournament> tournaments) {
@@ -46,18 +52,49 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.To
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(holder.itemView.getContext(),
-                        "Edit " + tournament.getName(),
-                        Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(holder.itemView.getContext(), EditTournamentActivity.class);
+
+                intent.putExtra("id", tournament.getId());
+                intent.putExtra("name", tournament.getName());
+                intent.putExtra("startDate", tournament.getStartDate());
+                intent.putExtra("endDate", tournament.getEndDate());
+                intent.putExtra("category", tournament.getCategory());
+                intent.putExtra("difficulty", tournament.getDifficulty());
+
+                holder.itemView.getContext().startActivity(intent);
             }
         });
+
+        db = AppDatabase.getInstance(holder.itemView.getContext());
 
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(holder.itemView.getContext(),
-                        "Delete " + tournament.getName(),
-                        Toast.LENGTH_LONG).show();
+                int currentPos = holder.getAdapterPosition();
+
+                if(currentPos == RecyclerView.NO_POSITION) {
+                    return;
+                }
+
+                Tournament selectedTournament = tournaments.get(currentPos);
+
+                new AlertDialog.Builder(holder.itemView.getContext())
+                        .setTitle("Delete Tournament")
+                        .setMessage("Are you sure you want to delete " + selectedTournament.getName() + "?")
+                        .setPositiveButton("Delete", (dialog, which) -> {
+                            AppDatabase db = AppDatabase.getInstance(holder.itemView.getContext());
+
+                            db.tournamentDao().delete(selectedTournament);
+
+                            tournaments.remove(currentPos);
+                            notifyItemRemoved(currentPos);
+
+                            Toast.makeText(holder.itemView.getContext(),
+                                    "Tournament deleted",
+                                    Toast.LENGTH_SHORT).show();
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
             }
         });
 
