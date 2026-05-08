@@ -1,12 +1,25 @@
 package cs.amelie.assign2_task2_quizapp_ameliehemmerich.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "participations")
 public class Participation {
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private int userId;
     private int tournamentId;
     private int score;
     private int rating;
     private int completedAt;
+
+    public Participation(int userId, int tournamentId, int score, int rating, int completedAt) {
+        this.userId = userId;
+        this.tournamentId = tournamentId;
+        this.score = score;
+        this.rating = rating;
+        this.completedAt = completedAt;
+    }
 
     public int getId() {
         return id;

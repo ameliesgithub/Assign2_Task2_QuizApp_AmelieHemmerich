@@ -6,13 +6,14 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Participation;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Question;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Tournament;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.User;
 
 @Database(
-        entities = {User.class, Tournament.class, Question.class},
-        version = 4
+        entities = {User.class, Tournament.class, Question.class, Participation.class},
+        version = 5
 )
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -36,4 +37,5 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract TournamentDao tournamentDao();
     public abstract QuestionDao questionDao();
+    public abstract ParticipationDao participationDao();
 }
