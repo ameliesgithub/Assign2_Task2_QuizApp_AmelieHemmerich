@@ -14,11 +14,12 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:background="#9B1446"
-        android:padding="24px">
+        android:padding="24px"
+        android:layout_marginBottom="20dp">
 
         <TextView
             android:id="@+id/tvHeaderTourList"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tournament List"
             android:textStyle="bold"
@@ -27,7 +28,34 @@
             android:textAlignment="center"
             />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/tvLogoutTourList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textAlignment="viewEnd"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvEmptyMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No tournaments found."
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTournamentList"

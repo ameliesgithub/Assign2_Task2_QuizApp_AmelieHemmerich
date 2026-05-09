@@ -1,10 +1,12 @@
 package cs.amelie.assign2_task2_quizapp_ameliehemmerich.admin;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,6 +21,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.R;
+import cs.amelie.assign2_task2_quizapp_ameliehemmerich.auth.LoginActivity;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.database.AppDatabase;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Tournament;
 
@@ -26,6 +29,7 @@ public class EditTournamentActivity extends AppCompatActivity {
 
     private EditText edtName, edtStartDate, edtEndDate;
     private Button btnSave;
+    private TextView tvLogout;
     private AppDatabase db;
     private int tournamentId, category;
     private String difficulty;
@@ -47,6 +51,15 @@ public class EditTournamentActivity extends AppCompatActivity {
         edtStartDate = findViewById(R.id.edtStartDateEdit);
         edtEndDate = findViewById(R.id.edtEndDateEdit);
         btnSave = findViewById(R.id.btnUpdateTour);
+        tvLogout = findViewById(R.id.tvLogoutEditTour);
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         loadIntentData();
         setupDatePickers();

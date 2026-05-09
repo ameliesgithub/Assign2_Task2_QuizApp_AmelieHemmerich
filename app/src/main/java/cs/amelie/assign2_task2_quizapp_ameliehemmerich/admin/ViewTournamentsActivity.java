@@ -1,6 +1,9 @@
 package cs.amelie.assign2_task2_quizapp_ameliehemmerich.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +16,7 @@ import java.util.List;
 
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.R;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.adapter.TournamentAdapter;
+import cs.amelie.assign2_task2_quizapp_ameliehemmerich.auth.LoginActivity;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.database.AppDatabase;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Tournament;
 
@@ -20,6 +24,7 @@ public class ViewTournamentsActivity extends AppCompatActivity {
 
     private RecyclerView rvTournaments;
     private AppDatabase db;
+    private TextView tvLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,16 @@ public class ViewTournamentsActivity extends AppCompatActivity {
 
         rvTournaments = findViewById(R.id.rvViewAllTournaments);
         db = AppDatabase.getInstance(this);
+
+        tvLogout = findViewById(R.id.tvLogoutViewAllTours);
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

@@ -17,4 +17,7 @@ public interface UserDao {
 
     @Query("SELECT COUNT(*) FROM users")
     int countUsers();
+
+    @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
+    User getUserByEmail(String email);
 }

@@ -1,6 +1,8 @@
 package cs.amelie.assign2_task2_quizapp_ameliehemmerich.player;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -18,12 +20,13 @@ import java.util.Locale;
 
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.R;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.adapter.PlayerTournamentAdapter;
+import cs.amelie.assign2_task2_quizapp_ameliehemmerich.auth.LoginActivity;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.database.AppDatabase;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Tournament;
 
 public class TournamentListActivity extends AppCompatActivity {
 
-    private TextView tvTitle;
+    private TextView tvTitle, tvEmptyMessage, tvLogout;
     private RecyclerView rvTournamentList;
 
     private AppDatabase db;
@@ -43,7 +46,17 @@ public class TournamentListActivity extends AppCompatActivity {
         });
 
         tvTitle = findViewById(R.id.tvHeaderTourList);
+        tvEmptyMessage = findViewById(R.id.tvEmptyMessage);
         rvTournamentList = findViewById(R.id.rvTournamentList);
+        tvLogout = findViewById(R.id.tvLogoutTourList);
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         currentUserId = getIntent().getIntExtra("userId", -1);
         db = AppDatabase.getInstance(this);
@@ -86,6 +99,14 @@ public class TournamentListActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+        if(filteredTournaments.isEmpty()) {
+            tvEmptyMessage.setVisibility(View.VISIBLE);
+            rvTournamentList.setVisibility(View.GONE);
+        } else {
+            tvEmptyMessage.setVisibility(View.GONE);
+            rvTournamentList.setVisibility(View.VISIBLE);
         }
 
         setTitleText(type);

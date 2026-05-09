@@ -24,13 +24,14 @@ import java.util.List;
 import java.util.Locale;
 
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.R;
+import cs.amelie.assign2_task2_quizapp_ameliehemmerich.auth.LoginActivity;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.database.AppDatabase;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Tournament;
 
 public class PlayerDashboardActivity extends AppCompatActivity {
 
     private LinearLayout llOngoingTournaments, llUpcomingTournaments, llPastTournaments, llParticipatedTournaments;
-
+    private TextView tvLogout;
     private AppDatabase db;
     private int currentUserId;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -52,6 +53,15 @@ public class PlayerDashboardActivity extends AppCompatActivity {
         llUpcomingTournaments = findViewById(R.id.llUpcomingTournaments);
         llPastTournaments = findViewById(R.id.llPastTournaments);
         llParticipatedTournaments = findViewById(R.id.llParticipatedTournaments);
+        tvLogout = findViewById(R.id.tvLogoutPlayerDash);
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         currentUserId = getIntent().getIntExtra("userId", -1);
 

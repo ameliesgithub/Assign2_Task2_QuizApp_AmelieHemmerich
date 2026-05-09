@@ -19,12 +19,13 @@ import java.util.Date;
 import java.util.Locale;
 
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.R;
+import cs.amelie.assign2_task2_quizapp_ameliehemmerich.auth.LoginActivity;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.database.AppDatabase;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Participation;
 
 public class ResultActivity extends AppCompatActivity {
 
-    private TextView tvScore;
+    private TextView tvScore, tvLogout;
     private RatingBar ratingBar;
     private Button btnFinish;
     private AppDatabase db;
@@ -46,6 +47,15 @@ public class ResultActivity extends AppCompatActivity {
         tvScore = findViewById(R.id.tvScoreResults);
         ratingBar = findViewById(R.id.ratingBar);
         btnFinish = findViewById(R.id.btnFinish);
+        tvLogout = findViewById(R.id.tvLogoutResults);
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         score = getIntent().getIntExtra("score", 0);
         total = getIntent().getIntExtra("total", 10);

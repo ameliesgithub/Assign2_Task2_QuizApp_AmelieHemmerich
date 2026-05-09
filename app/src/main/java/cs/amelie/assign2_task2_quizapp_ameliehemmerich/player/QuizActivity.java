@@ -21,12 +21,13 @@ import java.util.Collections;
 import java.util.List;
 
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.R;
+import cs.amelie.assign2_task2_quizapp_ameliehemmerich.auth.LoginActivity;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.database.AppDatabase;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Question;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private TextView tvQuestion, tvQuestionNumber, tvFeedback;
+    private TextView tvQuestion, tvQuestionNumber, tvFeedback, tvLogout;
     private RadioGroup rgAnswers;
     private Button btnSubmit, btnNext;
     private AppDatabase db;
@@ -54,6 +55,15 @@ public class QuizActivity extends AppCompatActivity {
         rgAnswers = findViewById(R.id.radioGroupAnswers);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnNext = findViewById(R.id.btnNext);
+        tvLogout = findViewById(R.id.tvLogoutQuiz);
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         db = AppDatabase.getInstance(this);
 
