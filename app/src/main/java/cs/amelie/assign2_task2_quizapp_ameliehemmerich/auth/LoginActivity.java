@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         } else if (user.getRole().equals("PLAYER")) {
             Intent intent = new Intent(getApplicationContext(), PlayerDashboardActivity.class);
+            intent.putExtra("userId", user.getId());
             startActivity(intent);
         }
 

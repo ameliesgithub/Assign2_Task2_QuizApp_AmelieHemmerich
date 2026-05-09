@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.R;
+import cs.amelie.assign2_task2_quizapp_ameliehemmerich.database.AppDatabase;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.model.Tournament;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.player.QuizActivity;
 
@@ -46,6 +47,18 @@ public class PlayerTournamentAdapter extends RecyclerView.Adapter<PlayerTourname
         holder.tvStartDate.setText("Start Date: " + tournament.getStartDate());
         holder.tvEndDate.setText("End Date: " + tournament.getEndDate());
 
+        if(type.equals("participated")) {
+            AppDatabase db = AppDatabase.getInstance(holder.itemView.getContext());
+
+            int score = db.participationDao()
+                    .getScoreForTournament(currentUserId, tournament.getId());
+
+            holder.tvScore.setVisibility(View.VISIBLE);
+
+            holder.tvScore.setText("Score: " + score + "/10");
+        } else {
+            holder.tvScore.setVisibility(View.GONE);
+        }
         if(type.equals("ongoing")) {
             holder.btnParticipate.setVisibility(View.VISIBLE);
         } else {
@@ -69,7 +82,7 @@ public class PlayerTournamentAdapter extends RecyclerView.Adapter<PlayerTourname
     }
 
     public static class PlayerTournamentViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvCategory, tvDifficulty, tvStartDate, tvEndDate;
+        TextView tvName, tvCategory, tvDifficulty, tvStartDate, tvEndDate, tvScore;
         Button btnParticipate;
 
         public PlayerTournamentViewHolder(@NonNull View itemView) {
@@ -80,6 +93,7 @@ public class PlayerTournamentAdapter extends RecyclerView.Adapter<PlayerTourname
             tvDifficulty = itemView.findViewById(R.id.tvDifficultyPlayer);
             tvStartDate = itemView.findViewById(R.id.tvStartDatePlayer);
             tvEndDate = itemView.findViewById(R.id.tvEndDatePlayer);
+            tvScore = itemView.findViewById(R.id.tvScoreItem);
             btnParticipate = itemView.findViewById(R.id.btnParticipatePlayer);
         }
     }

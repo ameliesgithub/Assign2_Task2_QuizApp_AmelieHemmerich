@@ -32,7 +32,7 @@ public class PlayerDashboardActivity extends AppCompatActivity {
     private LinearLayout llOngoingTournaments, llUpcomingTournaments, llPastTournaments, llParticipatedTournaments;
 
     private AppDatabase db;
-    private int currentUser = 2;
+    private int currentUserId;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
     @Override
@@ -52,6 +52,8 @@ public class PlayerDashboardActivity extends AppCompatActivity {
         llUpcomingTournaments = findViewById(R.id.llUpcomingTournaments);
         llPastTournaments = findViewById(R.id.llPastTournaments);
         llParticipatedTournaments = findViewById(R.id.llParticipatedTournaments);
+
+        currentUserId = getIntent().getIntExtra("userId", -1);
 
         llOngoingTournaments.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +84,7 @@ public class PlayerDashboardActivity extends AppCompatActivity {
     private void openTournamentList(String type) {
         Intent intent = new Intent(this, TournamentListActivity.class);
         intent.putExtra("type", type);
+        intent.putExtra("userId", currentUserId);
         startActivity(intent);
     }
 

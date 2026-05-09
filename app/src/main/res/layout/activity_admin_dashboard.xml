@@ -14,7 +14,8 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:background="#9B1446"
-        android:padding="24px">
+        android:padding="24px"
+        android:layout_marginBottom="20dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -43,7 +44,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/icon_add"
-            android:tint="#9B1446"
+            app:tint="#9B1446"
             />
 
         <TextView
@@ -72,7 +73,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/icon_list"
-            android:tint="#9B1446"
+            app:tint="#9B1446"
             />
 
         <TextView

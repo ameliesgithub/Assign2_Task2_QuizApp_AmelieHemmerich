@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".player.QuizActivity"
+    tools:context=".player.ResultActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tournament"
+            android:text="Tournament Result"
             android:textStyle="bold"
             android:textSize="24dp"
             android:textColor="#FFFFFF"
@@ -31,66 +31,47 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
 
         <TextView
-            android:id="@+id/tvQuestionNumber"
+            android:id="@+id/tvScoreResults"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Question 1 of 10"
-            android:textSize="18sp"
+            android:text="Your Score: 0/10"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:layout_marginBottom="16dp"
-            />
-
-        <TextView
-            android:id="@+id/tvQuestion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Question Text"
-            android:textStyle="bold"
-            android:textSize="22sp"
             android:layout_marginBottom="24dp"
             />
 
-        <RadioGroup
-            android:id="@+id/radioGroupAnswers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            />
-
         <TextView
-            android:id="@+id/tvFeedback"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:text="Rate this quiz"
             android:textStyle="bold"
-            android:layout_marginBottom="20dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp"
+            />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1"
+            android:rating="3"
+            android:layout_marginBottom="24dp"
             />
 
         <Button
-            android:id="@+id/btnSubmit"
+            android:id="@+id/btnFinish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit Answer"
-            android:backgroundTint="#9B1446"
-            />
-
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Next Question"
-            android:visibility="gone"
-            android:layout_marginTop="12dp"
+            android:text="Finish"
             android:backgroundTint="#9B1446"
             />
 
     </LinearLayout>
-
-
-
 
 </LinearLayout>

@@ -13,7 +13,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.R;
 import cs.amelie.assign2_task2_quizapp_ameliehemmerich.database.AppDatabase;
@@ -120,6 +123,11 @@ public class EditTournamentActivity extends AppCompatActivity {
             return;
         }
 
+        if(!isValidDateRange(startDate, endDate)) {
+            Toast.makeText(this, "Start date must be before or equal to end date", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Tournament updatedTournament = new Tournament(
                 name,
                 category,
@@ -134,5 +142,18 @@ public class EditTournamentActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Tournament updated", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    private boolean isValidDateRange(String startDate, String endDate) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+            Date start = sdf.parse(startDate);
+            Date end = sdf.parse(endDate);
+
+            return start != null && end != null && !start.after(end);
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

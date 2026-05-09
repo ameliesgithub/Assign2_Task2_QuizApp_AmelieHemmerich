@@ -11,9 +11,9 @@ public class Participation {
     private int tournamentId;
     private int score;
     private int rating;
-    private int completedAt;
+    private String completedAt;
 
-    public Participation(int userId, int tournamentId, int score, int rating, int completedAt) {
+    public Participation(int userId, int tournamentId, int score, int rating, String completedAt) {
         this.userId = userId;
         this.tournamentId = tournamentId;
         this.score = score;
@@ -61,11 +61,11 @@ public class Participation {
         this.rating = rating;
     }
 
-    public int getCompletedAt() {
+    public String getCompletedAt() {
         return completedAt;
     }
 
-    public void setCompletedAt(int completedAt) {
+    public void setCompletedAt(String completedAt) {
         this.completedAt = completedAt;
     }
 }

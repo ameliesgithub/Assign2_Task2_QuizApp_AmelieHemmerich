@@ -67,6 +67,15 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.To
 
         db = AppDatabase.getInstance(holder.itemView.getContext());
 
+        float avgRating = db.participationDao()
+                        .getAverageRaitngForTournament(tournament.getId());
+
+        if(avgRating == 0) {
+            holder.tvRating.setText("Average Rating: No ratings yet.");
+        } else {
+            holder.tvRating.setText("Average Rating: " + avgRating + "/5");
+        }
+
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +115,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.To
     }
 
     public static class TournamentViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvCategory, tvDifficulty, tvStartDate, tvEndDate;
+        TextView tvName, tvCategory, tvDifficulty, tvStartDate, tvEndDate, tvRating;
         Button btnEdit, btnDelete;
 
         public TournamentViewHolder(@NonNull View itemView) {
@@ -116,6 +125,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.To
             tvCategory = itemView.findViewById(R.id.tvCategoryTourItem);
             tvDifficulty = itemView.findViewById(R.id.tvDifficultyTourItem);
             tvStartDate = itemView.findViewById(R.id.tvStartDateTourItem);
+            tvRating = itemView.findViewById(R.id.tvRatingTourItem);
             tvEndDate = itemView.findViewById(R.id.tvEndDateTourItem);
 
             btnEdit = itemView.findViewById(R.id.btnEditTour);

@@ -27,7 +27,7 @@ public class TournamentListActivity extends AppCompatActivity {
     private RecyclerView rvTournamentList;
 
     private AppDatabase db;
-    private int currentUserId = 2;
+    private int currentUserId;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
@@ -45,6 +45,7 @@ public class TournamentListActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvHeaderTourList);
         rvTournamentList = findViewById(R.id.rvTournamentList);
 
+        currentUserId = getIntent().getIntExtra("userId", -1);
         db = AppDatabase.getInstance(this);
 
         String type = getIntent().getStringExtra("type");
